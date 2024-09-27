@@ -49,7 +49,7 @@ export const update =async(req,res)=>{
             return res.status(404).json({msg:"user not found"});
         }
         const updatedData=await User.findByIdAndUpdate(id,req.body,{new:true})
-        res.status(200).json(updatedData);
+        res.status(200).json({msg:"User Updated Successfully"});
 
     } catch (error) {
         res.status(500).json({ error: error.message });
