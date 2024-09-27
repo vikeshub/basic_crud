@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import axios from "axios"
+import toast from 'react-hot-toast';
 import "./User.css";
 function User() {
     const [users,setUsers]=useState([])
@@ -19,6 +20,8 @@ function User() {
         .then((response)=>{
             setUsers((prevUser)=>prevUser.filter((user)=>user._id !=userId))
             console.log(response)
+            toast.success(response.data.msg,{position:"top-right"})
+            
         })
         .catch((error)=>{
             console.log(error)
