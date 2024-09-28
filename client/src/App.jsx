@@ -1,8 +1,8 @@
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import User from "./components/getuser/user";
-import Add from "./components/adduser/add";
-import Edit from "./components/updateuser/Edit";
+import User from "./components/getuser/User.jsx";
+import Add from "./components/adduser/Add.jsx";
+import Edit from "./components/updateuser/Edit.jsx";
 function App() {
   const route = createBrowserRouter([
     {
