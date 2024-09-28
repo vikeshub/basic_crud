@@ -3,7 +3,11 @@ import "./Add.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+
+
 function Add() {
+
+    const BASE_URL = import.meta.env.VITE_BASE_URL || 'http://localhost:8000/api';
 
     const users={
         fname:"",
@@ -21,7 +25,7 @@ function Add() {
     }
     const submitForm =async(e)=>{
         e.preventDefault();
-        await axios.post("http://localhost:8000/api/create",user)
+        await axios.post(`${BASE_URL}/create`,user)
         .then((response)=>{
             toast.success(response.data.msg,{position:"top-right"})
             navigate("/")

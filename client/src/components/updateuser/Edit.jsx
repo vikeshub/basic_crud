@@ -12,6 +12,7 @@ function Edit() {
   const { id } = useParams();
   const [user, setUser] = useState(users);
   const navigate = useNavigate();
+  const BASE_URL = import.meta.env.VITE_BASE_URL || 'http://localhost:8000/api';
 
   const inputChangeHandler = (e) => {
     const { name, value } = e.target;
@@ -20,7 +21,7 @@ function Edit() {
   };
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/api/getone/${id}`)
+      .get(`${BASE_URL}/getone/${id}`)
       .then((response) => {
         setUser(response.data);
       })
@@ -32,7 +33,7 @@ function Edit() {
   const submitForm = async (e) => {
     e.preventDefault();
     await axios
-      .put(`http://localhost:8000/api/update/${id}`, user)
+      .put(`${BASE_URL}/update/${id}`, user)
       .then((response) => {
         toast.success(response.data.msg, { position: "top-right" });
         navigate("/");

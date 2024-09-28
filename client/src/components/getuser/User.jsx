@@ -5,18 +5,19 @@ import toast from 'react-hot-toast';
 import "./User.css";
 function User() {
     const [users,setUsers]=useState([])
-    
+    const BASE_URL = import.meta.env.VITE_BASE_URL || 'http://localhost:8000/api';
+
 
     useEffect(()=>{
         const fetchData=async()=>{
-         const response=await axios.get("http://localhost:8000/api/getall")
+         const response=await axios.get(`${BASE_URL}/getall`)
          setUsers(response.data);
         }
         fetchData();
     },[])
 
     const deleteUser=async(userId)=>{
-        await axios.delete(`http://localhost:8000/api/delete/${userId}`)
+        await axios.delete(`${BASE_URL}/delete/${userId}`)
         .then((response)=>{
             setUsers((prevUser)=>prevUser.filter((user)=>user._id !=userId))
             console.log(response)
